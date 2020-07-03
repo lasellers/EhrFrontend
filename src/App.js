@@ -1,8 +1,12 @@
 import React from 'react';
 import './App.css';
 
+const apiUrl = 'http://localhost:8000/api/';
+
 class PatientDetail extends React.Component {
+
     render() {
+
         console.log('state', this.props.state);
         const {birthDate, gender, name, id, careProvider, address, telecom, maritalStatus, communication, extension} = this.props.state;
         console.log('careProvider', careProvider);
@@ -30,10 +34,6 @@ class PatientDetail extends React.Component {
     }
 }
 
-/*
-
-
- */
 class App extends React.Component {
 
     constructor(props) {
@@ -42,7 +42,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:8000/api/patients?family=Argonaut&given=Jason`)
+        fetch(apiUrl + `patients?family=Argonaut&given=Jason`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -62,17 +62,8 @@ class App extends React.Component {
                 <div className="App">
                     <header className="App-header">
                         <h1>EHR</h1>
-                        {console.log(patients)}
-                        {console.log(patients[0])}
-                        {console.log(patients.length)}
                         {
                             patients.map(function (patient) {
-                                {
-                                    console.log(patient)
-                                }
-                                {
-                                    console.log(patient.id)
-                                }
                                 return <PatientDetail state={patient} key={patient.id}/>
                             })
                         }
@@ -81,10 +72,6 @@ class App extends React.Component {
             </>
         );
     }
-
 }
 
-// return  <div><p>{patient.id}</p><p>{patient.gender}</p><p>{patient.name[0].family}</p></div>
-
-//                                 <PatientDetail state={patient} key={patient.id}/>
 export default App;
