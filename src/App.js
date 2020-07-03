@@ -1,73 +1,80 @@
 import React from 'react';
 import './App.css';
+import Patient from './components/Patient';
+import SearchForm from "./components/SearchForm";
 
 const apiUrl = 'http://localhost:8000/api/';
-
-class PatientDetail extends React.Component {
-
-    render() {
-
-        console.log('state', this.props.state);
-        const {birthDate, gender, name, id, careProvider, address, telecom, maritalStatus, communication, extension} = this.props.state;
-        console.log('careProvider', careProvider);
-
-        let care;
-        if (careProvider) {
-            care = <p><b>careProvider</b>: {careProvider[0].display}</p>
-        } else {
-            care = ""
-        }
-
-        return (
-            <div className="App-body">
-                <p>id = {id}</p>
-                <p>{name[0].family} , {name[0].given}</p>
-                <p><b>gender</b>: {gender}</p>
-                <p><b>birthDate</b>: {birthDate}</p>
-                <p><b>maritalStatus</b>: {maritalStatus.text}</p>
-                <p><b>telecom</b>: {telecom[0].value}</p>
-                <p><b>communication</b>: {communication[0].language.text}</p>
-                <p><b>address</b>: {address[0].line} {address[0].city} {address[0].state}</p>
-                {care}
-            </div>
-        );
-    }
-}
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            searchForm: {},
+            patient: {}
+        };
+
+        this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
+        this.handleSearchFormChangeValue2 = this.handleSearchFormChangeValue.bind(this);
     }
 
-    componentDidMount() {
-        fetch(apiUrl + `patients?family=Argonaut&given=Jason`)
+    update(props) {
+        const {family, given} = this.state.searchForm;
+        const url = `${apiUrl}patients?family=${family}&given=${given}`;
+        console.log('update fetch:', family, given, url);
+        fetch(url)
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState(result);
+                    this.setState({['patient']: result});
                 },
                 (error) => {
                     console.log(error);
-                    this.setState(error);
+                    this.setState({['error']: error});
                 }
             )
+    }
+
+    componentDidMount() {
+        this.update({});
     };
 
+    handleSearchFormChangeValue = (name, value) => {
+        console.log(' handleSearchFormChangeValue', name, value, this.state.searchForm);
+
+        this.setState({
+            searchForm: {...this.state.searchForm, [name]: value}
+        });
+
+        console.log(' handleSearchFormChangeValue end', name, value, this.state.searchForm);
+    }
+
+    handleSearchFormSubmit(event) {
+        console.log(' handleSearchFormSubmit');
+        console.log('state', this.state);
+        console.log('event', event);
+        this.update(this.state);
+        event.preventDefault();
+    }
+
     render() {
-        const patients = Object.values(this.state);
+        const patients = Object.values(this.state.patient);
         return (
             <>
                 <div className="App">
+                    <SearchForm value={this.state.searchForm}
+                                onChangeValue={this.handleSearchFormChangeValue}
+                                onSubmitValues={this.handleSearchFormSubmit}/>
+
                     <header className="App-header">
                         <h1>EHR</h1>
                         {
                             patients.map(function (patient) {
-                                return <PatientDetail state={patient} key={patient.id}/>
+                                return <Patient state={patient} key={patient.id}/>
                             })
                         }
                     </header>
+
                 </div>
             </>
         );
