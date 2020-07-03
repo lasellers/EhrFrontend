@@ -15,7 +15,7 @@ class App extends React.Component {
         };
 
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
-        this.handleSearchFormChangeValue2 = this.handleSearchFormChangeValue.bind(this);
+        this.handleSearchFormChangeValue = this.handleSearchFormChangeValue.bind(this);
     }
 
     update(props) {
