@@ -1,6 +1,7 @@
 # EHR Frontend
 
 Frontend to ehr-epic.
+This is a simple experiment dealing with EPIC and React.
 
 ## `npm install`
 
