@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Procedure extends React.Component {
 
@@ -36,4 +37,4 @@ class Procedure extends React.Component {
     }
 }
 
-export default Patient;
+export default Procedure;

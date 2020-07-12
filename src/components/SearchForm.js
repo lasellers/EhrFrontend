@@ -37,7 +37,6 @@ class SearchForm extends React.Component {
 
     render() {
 //        const {birthDate, gender, name, id, careProvider, address, telecom, maritalStatus, communication, extension, deceasedBoolean} = this.props.state;
-
         return (
             <form onSubmit={this.props.onSubmitValues}>
                 <label>
