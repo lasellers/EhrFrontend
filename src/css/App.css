@@ -102,8 +102,12 @@ nav a:hover {
 }
 
 
+.add-comment .card-body {
+  display: none;
+}
 
-.add-appointment .card-body {
+
+.add-patient .card-body {
   display: none;
 }
 

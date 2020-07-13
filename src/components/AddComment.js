@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
-class AddPatient extends Component {
+class AddComment extends Component {
     constructor() {
         super();
         this.state = {
-            patient: {}
+            comment: 'test.',
+            patientId: '1',
+            practitionerId: '2',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
@@ -14,7 +16,7 @@ class AddPatient extends Component {
     handleAdd(e) {
         e.preventDefault();
 
-        fetch(`/api/patient`, {
+        fetch(`/api/comment`, {
             method: 'post',
             body: JSON.stringify({
                 patientId: this.state.patientId,
@@ -27,11 +29,13 @@ class AddPatient extends Component {
         })
             .then(res => res.json())
             .then(json => {
-                this.props.updatePatients();
+                this.props.updateComments();
             });
 
         this.setState({
-            patient: {}
+            comment: 'test...',
+            patientId: '1',
+            practitionerId: '2',
         });
 
         this.props.toggleForm();
@@ -52,18 +56,18 @@ class AddPatient extends Component {
             <div
                 className={
                     'card textcenter mt-3 ' +
-                    (this.props.formDisplay ? '' : 'add-patient')
+                    (this.props.formDisplay ? '' : 'add-comment')
                 }
             >
                 <div
                     className="apt-addheading card-header bg-primary text-white"
                     onClick={this.props.toggleForm}
                 >
-                    <FaPlus/> Add Patient
+                    <FaPlus/> Add Comment
                 </div>
 
                 <div className="card-body">
-                    <form id="patientForm" noValidate onSubmit={this.handleAdd}>
+                    <form id="commentForm" noValidate onSubmit={this.handleAdd}>
                         <div className="form-group form-row">
                         </div>
 
@@ -107,43 +111,6 @@ class AddPatient extends Component {
                         </div>
 
                         <div className="form-group form-row">
-                            <label
-                                className="col-md-2 col-form-label text-md-right"
-                                htmlFor="Given"
-                            >Given</label>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Given"
-                                    name="given"
-                                    id="given"
-                                    value={this.state.given}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </div>
-
-                        <div className="form-group form-row">
-                            <label
-                                className="col-md-2 col-form-label text-md-right"
-                                htmlFor="Family"
-                            >Given</label>
-                            <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Family"
-                                    name="family"
-                                    id="family"
-                                    value={this.state.family}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </div>
-
-
-                        <div className="form-group form-row">
                             <label className="col-md-2 text-md-right" htmlFor="Comment">
                                 Comment
                             </label>
@@ -167,7 +134,7 @@ class AddPatient extends Component {
                                     type="submit"
                                     className="btn btn-primary d-block ml-auto"
                                 >
-                                    Add Patient
+                                    Add Comment
                                 </button>
                             </div>
                         </div>
@@ -178,4 +145,4 @@ class AddPatient extends Component {
     }
 }
 
-export default AddPatient;
+export default AddComment;

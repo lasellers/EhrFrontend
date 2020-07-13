@@ -7,7 +7,9 @@ import {
 import '../css/App.css';
 import { Link } from 'react-router-dom';
 import HomePage from '../components/HomePage';
-import PatientList from '../components/PatientList';
+// import PatientList from '../components/PatientList';
+import ListPatients from '../components/ListPatients';
+import Patients from '../components/Patients';
 import Patient from '../components/Patient';
 import Condition from '../components/Condition';
 import Device from '../components/Device';
@@ -47,13 +49,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/" component={HomePage} exact />
                             <Route path="/about" component={AboutPage} />
-                            <Route path="/patients" component={PatientList}/>
-                            <Route path="/patient/:id" component={Patient} />
-                            <Route path="/procedure/:id" component={Procedure} />
-                            <Route path="/condition/:id" component={Condition} />
-                            <Route path="/device/:id" component={Device} />
-                            <Route path="/condition/:id" component={Condition} />
-                            <Route path="/practitioner/:id" component={Practitioner} />
+                            <Route path="/patients" component={Patients}/>
                             <Route path="/comments" component={Comments} />
                             <Route component={NotFoundPage} />
                         </Switch>
@@ -64,6 +60,15 @@ class App extends Component {
     }
 }
 
+/*
+  <Route path="/patient/:id" component={Patient} />
+                            <Route path="/procedure/:id" component={Procedure} />
+                            <Route path="/condition/:id" component={Condition} />
+                            <Route path="/device/:id" component={Device} />
+                            <Route path="/condition/:id" component={Condition} />
+                            <Route path="/practitioner/:id" component={Practitioner} />
+
+*/
 class App2 extends React.Component {
 
     constructor(props) {

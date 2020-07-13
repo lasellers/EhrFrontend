@@ -2,55 +2,32 @@ import React, { Component, useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import NotFoundPage from '../components/NotFoundPage';
-import { without } from 'lodash';
 
-/*
-deletePatient(apt) {
-    let tempPatients = this.state.Patients;
-    tempPatients = without(tempPatients, patient);
-
-    this.setState({
-        Patients: tempPatients
-    });
-}*/
-
-const PatientList = ({match, deletePatient}) => {
+const PatientList = ({match}) => {
     const patientId = match.params.patientId;
-   // const patients = []; // articleContent.find(article => article.name === name);
+    const article = ''; // articleContent.find(article => article.name === name);
 
-    const [patients, getPatients] = useState([]);
+    const [articleInfo, setArticleInfo] = useState({patientId: 0});
 
     useEffect(() => {
         const fetchData = async () => {
             const result = await fetch(`/api/patients`);
             const body = await result.json();
-            getPatients(body);
+            setPatients(body);
         }
         fetchData();
-    }, [patientId]);
+    }, [name]);
 
-/*
-    function deletePatient = (apt) => {
-        let tempPatients = this.state.Patients;
-        tempPatients = without(tempPatients, patient);
+    if (!article) return <NotFoundPage/>
 
-        this.setState({
-            Patients: tempPatients
-        });
-    };*/
-
-    if (!patients) return <NotFoundPage/>
-
-    /*   onClick={() => this.props.deletePatient(item)} */
     return (
         <div className="patient-list item-list mb-3">
-            {patients.map(item => (
-                <div className="patient-item col media py-3" key={item.id}>
+            {this.props.patients.map(item => (
+                <div className="patient-item col media py-3" key={item.patientId}>
                     <div className="mr-3">
                         <button
-                            className="patient-delete btn btn-sm btn-danger"
-
+                            className="pet-delete btn btn-sm btn-danger"
+                            onClick={() => this.props.deletePatient(item)}
                         >
                             <FaTimes/>
                         </button>
@@ -60,14 +37,32 @@ const PatientList = ({match, deletePatient}) => {
                         <div className="patient-head d-flex">
                 <span
                     className="given"
+                    contentEditable
+                    suppressContentEditableWarning
+                    onBlur={e =>
+                        this.props.updateInfo(
+                            'given',
+                            e.target.innerText,
+                            item.patientId
+                        )
+                    }
                 >
-                  {item.given}
+                  {item.patientId}--{item.given}
                 </span>
                         </div>
 
                         <div className="family">
                             <span className="label-item">family: </span>
                             <span
+                                contentEditable
+                                suppressContentEditableWarning
+                                onBlur={e =>
+                                    this.props.updateInfo(
+                                        'family',
+                                        e.target.innerText,
+                                        item.patientId
+                                    )
+                                }
                             >
                   {item.family}
                 </span>
