@@ -7,9 +7,9 @@ class AddComment extends Component {
     constructor() {
         super();
         this.state = {
-            comment: 'test.',
-            patient_id: '1',
-            practitioner_id: '2',
+            comment: '',
+            patient_id: '0',
+            practitioner_id: '0',
             practitioners: [],
             patients: []
         };
@@ -59,9 +59,9 @@ class AddComment extends Component {
             });
 
         this.setState({
-            comment: 'test...',
-            patient_id: '1',
-            practitioner_id: '2',
+            comment: '',
+            patient_id: '0',
+            practitioner_id: '0',
         });
 
         this.props.toggleForm();
