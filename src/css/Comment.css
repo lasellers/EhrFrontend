@@ -1,5 +1,10 @@
 .comment-list {
 }
+.comment-item {
+    border-bottom: 1px solid gray;
+    padding: 16px;
+    margin-left: 1em;
+}
 
 .comment-delete {
 

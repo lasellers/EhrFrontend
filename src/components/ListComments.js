@@ -23,13 +23,14 @@ class ListComments extends Component {
 
     render() {
         return (
-            <>
                 <div className="comment-list item-list mb-3">
                     {this.props.comments.map(item => (
-                        <div className="row comment-item media py-3" key={item.id}>
-                            <div className="col-md-7">{item.comment}</div>
-                            <div className="col-md-2">{item.patient_id}</div>
-                            <div className="col-md-2">{item.practitioner_id}</div>
+                        <div className="row comment-item media" key={item.id}>
+                            <div className="col-md-11">
+                                <div className="">Care Provider: <i>{item.patient.family},{item.patient.given}</i></div>
+                                <div className="">Name: <b>{item.practitioner.name}</b></div>
+                                <div className="py-3">{item.comment}</div>
+                            </div>
                             <div className="col-md-1">
                                 <button
                                     className="comment-delete btn btn-sm btn-danger"
@@ -41,7 +42,6 @@ class ListComments extends Component {
                         </div>
                     ))}
                 </div>
-            </>
         );
     }
 }

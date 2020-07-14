@@ -18,7 +18,7 @@ body {
     margin-right: 10%;
     margin-top: auto;
     margin-bottom: auto;
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 button {
@@ -39,8 +39,9 @@ h3, h4 {
     background-color: #a9aeb2;
 }
 
-.article-list-item {
-    text-decoration: none;
-    color: black;
-    padding: 16px 0 0 0;
+select {
+    min-width: 20em;
 }
+.select-single {
+}
+

@@ -27,7 +27,7 @@ class NavBar extends React.Component {
                             <Link to="/device">Device</Link>
                         </li>
                         <li>
-                            <Link to="/practictioner">Practictioner</Link>
+                            <Link to="/practitioner">Practitioner</Link>
                         </li>
                         <li>
                             <Link to="/procedure">Procedure</Link>

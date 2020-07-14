@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import Select from 'react-select';
 import '../css/Comment.css';
 
 class AddComment extends Component {
@@ -9,9 +10,33 @@ class AddComment extends Component {
             comment: 'test.',
             patient_id: '1',
             practitioner_id: '2',
+            practitioners: [],
+            patients: []
         };
-        this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSelectPatientChange = this.handleSelectPatientChange.bind(this);
+        this.handleSelectPractitionerChange = this.handleSelectPractitionerChange.bind(this);
+    }
+
+    componentDidMount() {
+        fetch(`/api/practitioners`)
+            .then(res => res.json())
+            .then(json => {
+
+                const p = json.map(row => ({'value': row.id, 'label': row.name}));
+
+                this.setState({practitioners: p});
+            });
+
+        fetch(`/api/patients`)
+            .then(res => res.json())
+            .then(json => {
+
+                const p = json.map(row => ({'value': row.id, 'label': row.family + ',' + row.given}));
+
+                this.setState({patients: p});
+            });
     }
 
     handleAdd(e) {
@@ -52,6 +77,26 @@ class AddComment extends Component {
         });
     }
 
+    handleSelectPatientChange(e) {
+        console.log(e);
+        const value = e.value;
+        const name = e.label;
+
+        this.setState({
+            ['patient_id']: value
+        });
+    }
+
+    handleSelectPractitionerChange(e) {
+        console.log(e);
+        const value = e.value;
+        const name = e.label;
+
+        this.setState({
+            ['practitioner_id']: value
+        });
+    }
+
     render() {
         return (
             <div
@@ -80,14 +125,12 @@ class AddComment extends Component {
                                 Patient
                             </label>
                             <div className="col-md-10">
-                                <input
-                                    type="text"
-                                    className="form-control"
+                                <Select
+                                    className="select-single"
                                     name="patient_id"
-                                    placeholder="patient_id"
-                                    value={this.state.patient_id}
-                                    onChange={this.handleChange}
-                                />
+                                    id="patient_id"
+                                    options={this.state.patients}
+                                    onChange={this.handleSelectPatientChange}/>
                             </div>
                         </div>
 
@@ -99,15 +142,12 @@ class AddComment extends Component {
                                 Practitioner
                             </label>
                             <div className="col-md-4">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="practitioner_id"
+                                <Select
+                                    className="select-single"
                                     name="practitioner_id"
                                     id="practitioner_id"
-                                    value={this.state.practitioner_id}
-                                    onChange={this.handleChange}
-                                />
+                                    options={this.state.practitioners}
+                                    onChange={this.handleSelectPractitionerChange}/>
                             </div>
                         </div>
 

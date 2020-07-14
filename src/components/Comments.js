@@ -9,7 +9,9 @@ class Comments extends Component {
         super();
         this.state = {
             comments: [],
-            formDisplay: false
+            formDisplay: false,
+            practitioners: [],
+            patients: []
         };
         this.toggleForm = this.toggleForm.bind(this);
         this.updateComments = this.updateComments.bind(this);
