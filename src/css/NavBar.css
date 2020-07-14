@@ -1,0 +1,40 @@
+nav {
+    background-color: white;
+    border-right: 4px solid black;
+    text-align: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 1020
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: block;
+    padding-top: .2em;
+    padding-bottom: .2em;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 8px 4px;
+    padding: 8px 4px;
+}
+
+nav a:hover {
+    background: black;
+    color: white;
+}
+
+nav ul ul {
+    margin-left: 16px;
+}

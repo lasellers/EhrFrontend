@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import '../css/Patient.css';
 
 class AddPatient extends Component {
     constructor() {
@@ -19,7 +20,8 @@ class AddPatient extends Component {
             body: JSON.stringify({
                 patientId: this.state.patientId,
                 practitionerId: this.state.practitionerId,
-                comment: this.state.comment
+                given: this.state.given,
+                family: this.state.family
             }),
             headers: {
                 'Content-Type': 'application/json'

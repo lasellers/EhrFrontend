@@ -4,7 +4,6 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-import '../css/App.css';
 import { Link } from 'react-router-dom';
 import HomePage from '../components/HomePage';
 // import PatientList from '../components/PatientList';
@@ -21,6 +20,7 @@ import AboutPage from '../components/AboutPage';
 import Comments from '../components/Comments';
 import NotFoundPage from '../components/NotFoundPage';
 import { without } from 'lodash';
+import '../css/App.css';
 
 const apiUrl = '/api/';
 // const apiUrl = 'http://localhost:8000/api/';
@@ -42,10 +42,9 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <h2>Patient List</h2>
+                <div id="App">
                     <NavBar />
-                    <div id="page-body">
+                    <div id="App-body">
                         <Switch>
                             <Route path="/" component={HomePage} exact />
                             <Route path="/about" component={AboutPage} />

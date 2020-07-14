@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import '../css/Patient.css';
 
 const PatientList = ({match}) => {
     const patientId = match.params.patientId;

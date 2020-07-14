@@ -1,2 +1,37 @@
-.AddPatient {
+.add-patient .card-body {
+    display: none;
+}
+
+.delete-patient {
+}
+
+.patient-list {
+}
+
+.patient-list .patient-item {
+    border-bottom: 1px dotted gray;
+}
+
+.patient-list .patient-item:last-child {
+    border-bottom: none;
+}
+
+.patient-list .patient-name {
+    font-weight: 600;
+    color: #337ab7;
+    font-size: 1.3em;
+    line-height: 100%;
+}
+
+.patient-list .label-item {
+    font-weight: 600;
+    color: #667b82;
+}
+
+.patient-list .apt-date {
+    font-style: italic;
+}
+
+.patient-list .apt-notes {
+    line-height: 120%;
 }

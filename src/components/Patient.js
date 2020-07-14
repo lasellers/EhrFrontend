@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Patient.css';
 
 class Patient extends React.Component {
 

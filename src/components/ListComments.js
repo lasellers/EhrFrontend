@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaTimes } from 'react-icons/fa';
+import '../css/Comment.css';
 
 class ListComments extends Component {
     constructor() {
@@ -22,28 +23,25 @@ class ListComments extends Component {
 
     render() {
         return (
-            <div className="comment-list item-list mb-3">
-                {this.props.comments.map(item => (
-                    <div className="comment-item col media py-3" key={item.id}>
-                        <div className="mr-3">
-                            <button
-                                className="comment-delete btn btn-sm btn-danger"
-                                onClick={() => this.handleDelete(item.id)}
-                            >
-                                <FaTimes/>
-                            </button>
-                            <div>{item.patientId}</div>
-                            <div>{item.practitionerId}</div>
-                            <div>{item.comment}</div>
-                        </div>
-
-                        <div className="comment-info media-body">
-                            <div className="comment-head d-flex">
+            <>
+                <div className="comment-list item-list mb-3">
+                    {this.props.comments.map(item => (
+                        <div className="row comment-item media py-3" key={item.id}>
+                            <div className="col-md-7">{item.comment}</div>
+                            <div className="col-md-2">{item.patient_id}</div>
+                            <div className="col-md-2">{item.practitioner_id}</div>
+                            <div className="col-md-1">
+                                <button
+                                    className="comment-delete btn btn-sm btn-danger"
+                                    onClick={() => this.handleDelete(item.id)}
+                                >
+                                    <FaTimes/>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </>
         );
     }
 }

@@ -21,6 +21,9 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `build` folder.
 
+## Developer IDE Notes
+1 Terminals.
+a) npm run start
 
 ## Test Accounts
 

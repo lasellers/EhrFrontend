@@ -2,6 +2,7 @@ import React from 'react';
 import { FaTimes } from "react-icons/fa";
 import AddPatient from "./AddPatient";
 import ListPatients from "./ListPatients";
+import '../css/Patient.css';
 
 class Patients extends React.Component {
     constructor() {

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import '../css/Comment.css';
 
 class AddComment extends Component {
     constructor() {
         super();
         this.state = {
             comment: 'test.',
-            patientId: '1',
-            practitionerId: '2',
+            patient_id: '1',
+            practitioner_id: '2',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
@@ -19,8 +20,8 @@ class AddComment extends Component {
         fetch(`/api/comment`, {
             method: 'post',
             body: JSON.stringify({
-                patientId: this.state.patientId,
-                practitionerId: this.state.practitionerId,
+                patient_id: this.state.patient_id,
+                practitioner_id: this.state.practitioner_id,
                 comment: this.state.comment
             }),
             headers: {
@@ -34,8 +35,8 @@ class AddComment extends Component {
 
         this.setState({
             comment: 'test...',
-            patientId: '1',
-            practitionerId: '2',
+            patient_id: '1',
+            practitioner_id: '2',
         });
 
         this.props.toggleForm();
@@ -74,17 +75,17 @@ class AddComment extends Component {
                         <div className="form-group form-row">
                             <label
                                 className="col-md-2 col-form-label text-md-right"
-                                htmlFor="patientId"
+                                htmlFor="patient_id"
                             >
-                                patientId
+                                Patient
                             </label>
                             <div className="col-md-10">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    name="patientId"
-                                    placeholder="patientId"
-                                    value={this.state.patientId}
+                                    name="patient_id"
+                                    placeholder="patient_id"
+                                    value={this.state.patient_id}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -93,18 +94,18 @@ class AddComment extends Component {
                         <div className="form-group form-row">
                             <label
                                 className="col-md-2 col-form-label text-md-right"
-                                htmlFor="practitionerId"
+                                htmlFor="practitioner_id"
                             >
-                                practitionerId
+                                Practitioner
                             </label>
                             <div className="col-md-4">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="practitionerId"
-                                    name="practitionerId"
-                                    id="practitionerId"
-                                    value={this.state.practitionerId}
+                                    placeholder="practitioner_id"
+                                    name="practitioner_id"
+                                    id="practitioner_id"
+                                    value={this.state.practitioner_id}
                                     onChange={this.handleChange}
                                 />
                             </div>

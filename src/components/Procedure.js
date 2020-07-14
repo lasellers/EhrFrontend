@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Procedure.css';
 
 class Procedure extends React.Component {
 

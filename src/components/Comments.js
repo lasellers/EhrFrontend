@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import AddComment from './AddComment';
 import ListComments from './ListComments';
+import '../css/Comment.css';
 
 class Comments extends Component {
     constructor() {
@@ -32,17 +33,21 @@ class Comments extends Component {
 
     render() {
         return (
-            <div className="comment-list item-list mb-3">
-                <AddComment
-                    formDisplay={this.state.formDisplay}
-                    toggleForm={this.toggleForm}
-                    updateComments={this.updateComments}
-                />
-                <ListComments
-                    comments={this.state.comments}
-                    updateComments={this.updateComments}
-                />
-            </div>
+            <>
+                <h1>Comments</h1>
+
+                <div className="comment-list item-list mb-3">
+                    <AddComment
+                        formDisplay={this.state.formDisplay}
+                        toggleForm={this.toggleForm}
+                        updateComments={this.updateComments}
+                    />
+                    <ListComments
+                        comments={this.state.comments}
+                        updateComments={this.updateComments}
+                    />
+                </div>
+            </>
         );
     }
 }
